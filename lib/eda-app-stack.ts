@@ -112,6 +112,7 @@ export class EDAAppStack extends cdk.Stack {
     const newImageMailEventSource = new events.SqsEventSource(mailerQ, {
       batchSize: 5,
       maxBatchingWindow: cdk.Duration.seconds(5),
+      reportBatchItemFailures: true,  // NEW
     });
 
     mailerFn.addEventSource(newImageMailEventSource);
